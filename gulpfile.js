@@ -25,4 +25,4 @@ gulp.task('inject', ['webpack'], function () {
         .pipe(gulp.dest('./build'))
 });
 
-gulp.task('build', ['clean', 'less', 'js']);
+gulp.task('build', ['clean', 'jshint', 'inject']);
