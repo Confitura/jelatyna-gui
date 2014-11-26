@@ -16,6 +16,9 @@ module.exports = {
     module: {
         loaders: [
             {
+                test: /\.less$/,
+                loader: 'style!css!less'
+            },            {
                 test: /angular.min/,
                 loader: 'exports?angular'
             },

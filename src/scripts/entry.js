@@ -1,3 +1,4 @@
+require('../less/main.less');
 var angular = require('ng');
 
 angular.module('abc', [])

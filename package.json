@@ -2,6 +2,7 @@
   "name": "jelatyna-gui",
   "description": "GUI for jelatyna",
   "devDependencies": {
+    "css-loader": "^0.9.0",
     "exports-loader": "^0.6.2",
     "gulp": "^3.8.10",
     "gulp-angular-templatecache": "^1.4.2",
@@ -15,9 +16,12 @@
     "html-loader": "^0.2.3",
     "karma": "^0.12.25",
     "karma-phantomjs-launcher": "^0.1.4",
+    "less": "^1.7.5",
+    "less-loader": "^0.7.7",
     "ng-annotate-webpack-plugin": "^0.1.2",
     "ng-cache-loader": "0.0.7",
     "path": "^0.4.9",
+    "style-loader": "^0.8.2",
     "webpack": "^1.4.13"
   }
 }
