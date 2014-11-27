@@ -1,10 +1,18 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var karma = require('karma').server;
 
 
 gulp.task('clean', function () {
     return gulp.src('build', {read: false})
         .pipe(plugins.clean());
+});
+
+gulp.task('test', function (done) {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done);
 });
 
 gulp.task('webpack', function () {
@@ -25,4 +33,4 @@ gulp.task('inject', ['webpack'], function () {
         .pipe(gulp.dest('./build'))
 });
 
-gulp.task('build', ['clean', 'jshint', 'inject']);
+gulp.task('build', ['clean', 'test','jshint', 'inject']);
