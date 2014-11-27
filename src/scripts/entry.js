@@ -1,7 +1,5 @@
 require('../less/main.less');
 var angular = require('ng');
 
-angular.module('abc', [])
-    .controller('Ctrl', require('controller'))
-    .directive('jlTime', require('time/directive'))
-;
+angular.module('jelatyna', [])
+    .controller('Ctrl', require('controller'));
