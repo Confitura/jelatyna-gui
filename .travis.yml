@@ -1,4 +1,7 @@
 language: node_js
 node_js:
   - 0.10
-script: gulp webpack
+before_script:
+  - npm install -g bower
+  - bower install
+script: gulp build
