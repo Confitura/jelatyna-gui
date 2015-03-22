@@ -7,8 +7,8 @@ require('angular-aria/angular-aria');
 require('angular-material/angular-material');
 //require('angular-material/angular-material.css');
 
-angular.module('jelatyna', ['ngAnimate', 'ngAria', 'ngMaterial', 'ngResource'])
+angular.module('jelatyna', [
+    'ngAnimate', 'ngAria', 'ngMaterial',
+    require('admin/module')])
     .constant('apiServer', 'http://localhost:8080/api')
-    .controller('AdminCreateCtrl', require('admin/AdminCreateCtrl'))
-    .factory('AdminService', require('admin/AdminService'))
 ;
