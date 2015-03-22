@@ -21,6 +21,10 @@ gulp.task('webpack', function () {
         .pipe(gulp.dest('build/js/'));
 });
 
+gulp.task('watch', ['inject'], function () {
+    gulp.watch('src/**/*', ['inject']);
+});
+
 gulp.task('jshint', function () {
     return gulp.src('src/scripts/**/*.js')
         .pipe(plugins.jshint())
@@ -33,4 +37,4 @@ gulp.task('inject', ['webpack'], function () {
         .pipe(gulp.dest('./build'))
 });
 
-gulp.task('build', ['clean', 'test', 'webpack', 'inject']);
+gulp.task('build', ['clean', 'test', 'inject']);

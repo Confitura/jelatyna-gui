@@ -9,8 +9,10 @@ module.exports = {
     resolve: {
         modulesDirectories: ['./src/scripts/', 'node_modules', 'bower_components'],
         alias: {
-            "ng": "angular/angular.min",
-            "lodash": "lodash/dist/lodash.min"
+            "ng": "angular/angular",
+            "lodash": "lodash/index"
+
+
         }
     },
     module: {
@@ -18,8 +20,13 @@ module.exports = {
             {
                 test: /\.less$/,
                 loader: 'style!css!less'
-            },            {
-                test: /angular.min/,
+            },
+            {
+                test: /\.css$/,
+                loader: 'style!css'
+            },  
+            {
+                test: /angular/,
                 loader: 'exports?angular'
             },
             {

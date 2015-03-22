@@ -2,12 +2,35 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.min.css"/>
 </head>
-<body ng-app="jelatyna" ng-controller="Ctrl as ctrl">
-<input type="text" ng-model="a" value="1"/>
-<input type="text" ng-model="b" value="2"/>
-<!--<button ng-click="sum = ctr.sum()"></button>-->
-{{ctrl.add(a, b)}}
+<body ng-app="jelatyna" ng-controller="AdminCreateCtrl as ctrl">
+<div layout="column">
+    <form ng-submit="ctrl.create()">
+        <md-content layout="row" class="md-padding">
+            <md-input-container flex>
+                <label>Imię</label>
+                <input ng-model="ctrl.admin.firstName" type="text">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Nazwisko</label>
+                <input ng-model="ctrl.admin.lastName" type="text">
+            </md-input-container>
+        </md-content>
+        <md-content layout="row" class="md-padding">
+            <md-input-container flex>
+                <label>e-mail</label>
+                <input ng-model="ctrl.admin.email" type="email">
+            </md-input-container>
+        </md-content>
+        <md-toolbar>
+            <h2 class="md-toolbar-tools md-toolbar-tools-bottom">
+                <md-button class="md-raised">Save</md-button>
+            </h2>
+        </md-toolbar>
+    </form>
+</div>
+
 <!-- inject:js -->
 <!-- endinject -->
 </body>
