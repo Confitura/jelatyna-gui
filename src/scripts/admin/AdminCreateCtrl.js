@@ -1,11 +1,15 @@
+'use strict';
 /* @ngInject */
-function AdminCreateCtrl(AdminService) {
-    this.admin = {firstName: 'Michał'};
+function AdminCreateCtrl(AdminService, $stateParams, PasswordService, $http, $window, $rootScope) {
+    this.admin = {firstName: 'Roman', lastName: 'Margiel', email: 'michal.margiel@gmail.com'};
+    this.password = {};
 
     this.create = function () {
-        //console.log(this);
-        //console.log(this.admin);
         AdminService.save(this.admin);
     };
+
+
+
+
 }
 module.exports = AdminCreateCtrl;

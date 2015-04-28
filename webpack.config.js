@@ -8,30 +8,33 @@ module.exports = {
     },
     resolve: {
         modulesDirectories: ['./src/scripts/', 'node_modules', 'bower_components'],
+        extensions: ['', '.webpack.js', '.web.js', '.js', '.less'],
         alias: {
             "ng": "angular/angular",
             "lodash": "lodash/index"
-
-
         }
     },
     module: {
         loaders: [
             {
+                test: /\.ts$/,
+                loader: 'typescript-loader'
+            },
+            {
                 test: /\.less$/,
-                loader: 'style!css!less'
+                loader: 'style!css!autoprefixer!less'
             },
             {
                 test: /\.css$/,
-                loader: 'style!css'
-            },  
+                loader: 'style!raw'
+            },
             {
                 test: /angular/,
                 loader: 'exports?angular'
             },
             {
-                test: /template.html$/,
-                loader: 'ng-cache?prefix=[dir]'
+                test: /\.html$/,
+                loader: 'html'
             }
         ]
     },

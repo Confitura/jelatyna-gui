@@ -1,0 +1,64 @@
+<div layout="row" layout-sm="column">
+	<div>
+		<img src="http://placehold.it/200x200" class="profile-picture"/>
+	</div>
+	<div flex>
+
+		<form name="ctrl.form" novalidate ng-controller="ProfileController as ctrl">
+
+			<div layout layout-sm="column">
+				<md-input-container flex>
+					<label>e-mail</label>
+					<input name="email" type="email"
+								 required ng-model="ctrl.user.person.email"/>
+
+					<div ng-messages="ctrl.form.email.$error">
+						<div ng-message="required">This is required</div>
+						<div ng-message="email">This is not a valid email</div>
+					</div>
+				</md-input-container>
+				<md-input-container flex>
+					<label>First Name</label>
+					<input name="firstName" type="text"
+								 required ng-model="ctrl.user.person.firstName"/>
+
+					<div ng-messages="ctrl.form.firstName.$error">
+						<div ng-message="required">This is required</div>
+					</div>
+				</md-input-container>
+				<md-input-container flex>
+					<label>Last Name</label>
+					<input name="lastName" type="text"
+								 required ng-model="ctrl.user.person.lastName"/>
+
+					<div ng-messages="ctrl.form.lastName.$error">
+						<div ng-message="required">This is required</div>
+					</div>
+				</md-input-container>
+			</div>
+			<div layout layout-sm="column">
+				<md-input-container flex>
+					<label>Twitter</label>
+					<input name="ctr.form.twitter" ng-model="ctrl.user.twitter" type="text"/>
+				</md-input-container>
+				<md-input-container flex>
+					<label>GitHub/BitBucket</label>
+					<input name="ctrl.form.code" ng-model="ctrl.user.code" type="text"/>
+				</md-input-container>
+			</div>
+			<div layout>
+				<md-input-container flex>
+					<label>About me</label>
+					<textarea name="ctr.from.bio" ng-model="ctrl.user.bio" type="text"></textarea>
+				</md-input-container>
+
+			</div>
+
+			<section layout layout-sm="column" layout-align="left">
+				<md-button class="md-raised" ng-disabled="ctrl.form.$invalid"
+									 ng-click="ctrl.save()">
+					Save
+				</md-button>
+			</section>
+		</form>
+	</div>

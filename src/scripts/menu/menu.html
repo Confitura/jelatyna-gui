@@ -1,0 +1,5 @@
+<md-toolbar class="md-toolbar-tools" ng-controller="MenuController as ctrl">
+    <md-button ng-repeat="item in ctrl.items">{{item.label}}</md-button>
+    <span flex></span>
+    <md-button ng-click="ctrl.logout()">Logout</md-button>
+</md-toolbar>
