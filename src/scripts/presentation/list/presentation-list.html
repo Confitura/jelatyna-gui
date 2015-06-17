@@ -1,0 +1,23 @@
+<div ng-controller="PresentationListController as ctrl">
+	<md-content>
+
+		<md-list>
+			<md-list-item ng-repeat="presentation in ctrl.presentations">
+				<!--<img src="http://placehold.it/150x150" alt="" style="width: 100px; border-radius: 100px;"/>-->
+
+				<div flex>{{presentation.title}}</div>
+				<div>{{presentation.rating}}</div>
+				<div>{{presentation.status}}</div>
+				<md-button class="md-icon-button" ui-sref="presentation">
+					<md-icon md-font-icon="fa-edit" class="fa fa-2x"></md-icon>
+				</md-button>
+				<md-button class="md-icon-button" ng-click="ctrl.delete(presentation, $event)">
+					<md-icon md-font-icon="fa-trash" class="fa fa-2x"></md-icon>
+				</md-button>
+			</md-list-item>
+		</md-list>
+	</md-content>
+	<md-button class="md-fab md-primary md-raised md-fab-top-right" style="float: right">
+		<div class="add"></div>
+	</md-button>
+</div>

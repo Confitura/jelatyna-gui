@@ -32,7 +32,7 @@ gulp.task('webpack', function () {
 //    gulp.watch('src/**/*', ['inject']);
 //});
 
-gulp.task('watch', ['clean', 'copy'], function () {
+gulp.task('watch', [ 'copy'], function () {
     //var fs = require('fs');
     //var flo = require('fb-flo');
     //flo('./build/', {

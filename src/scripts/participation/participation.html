@@ -1,0 +1,26 @@
+<div ng-controller="ParticipationController as ctrl">
+	<md-content>
+		<md-input-container>
+			<label>Imię</label>
+			<input type="text" disabled ng-model="ctrl.participant.firstName"/>
+		</md-input-container>
+		<md-input-container>
+			<label>Nazwisko</label>
+			<input type="text" disabled ng-model="ctrl.participant.lastName"/>
+		</md-input-container>
+		<md-input-container>
+			<label>Rozmiar koszulki</label>
+			<input type="text" disabled ng-model="ctrl.participant.registration.size" value="L"/>
+		</md-input-container>
+	</md-content>
+	<md-button class="md-fab md-fab-bottom-right"
+						 ng-hide="ctrl.participant.arrived"
+						 ng-click="ctrl.change('confirm')">
+		<md-icon>done</md-icon>
+	</md-button>
+	<md-button class="md-fab md-fab-bottom-right"
+						 ng-show="ctrl.participant.arrived"
+						 ng-click="ctrl.change('reject')">
+		<md-icon>undo</md-icon>
+	</md-button>
+</div>

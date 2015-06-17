@@ -4,7 +4,7 @@ var ng = require('angular');
 function Security($http, apiServer, $cookies, $window) {
 	var vm = this;
 	vm.replaceUser = function (user) {
-		$cookies.principal = ng.toJson(user);
+		$cookies.putObject('principal', user);
 	};
 
 	vm.login = function (credentials) {
@@ -16,20 +16,20 @@ function Security($http, apiServer, $cookies, $window) {
 		return $http.get(apiServer + '/user', {headers: headers})
 				.then(function (responce) {
 					vm.replaceUser(responce.data.principal);
-					$cookies.authenticated = true;
+					$cookies.putObject('authenticated', true);
 					return responce;
 				})
 	};
 
 	vm.getUser = function () {
-		return ng.fromJson($cookies.principal);
+		return $cookies.getObject('principal');
 	};
 
 	vm.logout = function () {
 		return $http.get(apiServer + '/logout')
 				.then(function () {
-					$cookies.authenticated = false;
-					$cookies.principal = null;
+					$cookies.remove('authenticated');
+					$cookies.remove('principal');
 				});
 	}
 

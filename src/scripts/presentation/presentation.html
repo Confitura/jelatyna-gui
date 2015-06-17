@@ -1,0 +1,63 @@
+<div layout="column" style="max-width: 800px" ng-controller="PresentationController as ctrl">
+	<form name="ctrl.form" novalidate>
+		<md-input-container flex>
+			<label>title</label>
+			<input name="title" type="text"
+						 required ng-model="ctrl.presentation.title"/>
+
+			<div ng-messages="ctrl.form.title.$error">
+				<div ng-message="required">This is required</div>
+			</div>
+		</md-input-container>
+		<div layout="row">
+			<md-input-container flex>
+				<label>co-speakers</label>
+				<input name="cospeaker" type="text" required ng-model="ctrl.cospeaker"/>
+			</md-input-container>
+			<md-button>add</md-button>
+		</div>
+		<md-list>
+			<md-list-item ng-repeat="cospeaker in ctrl.presentation.cospeakers">
+				<img ng-src="{{cospeaker.photo}}" class="md-avatar"/>
+
+				<p>{{cospeaker.name}}</p>
+				<md-checkbox ng-model="cospeaker.selected"></md-checkbox>
+				<!--<md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>-->
+			</md-list-item>
+		</md-list>
+		<md-input-container flex>
+			<p>language</p>
+
+			<md-radio-group ng-model="ctrl.presentation.language">
+				<md-radio-button value="pl" class="md-primary">Polish</md-radio-button>
+				<md-radio-button value="en">English</md-radio-button>
+			</md-radio-group>
+
+		</md-input-container>
+		<md-input-container flex>
+			<label>short description</label>
+			<textarea name="shortDescription"
+								required md-maxlength="300"
+								ng-model="ctrl.presentation.shortDescription"></textarea>
+
+			<div ng-messages="ctrl.form.shortDescription.$error">
+				<div ng-message="required">This is required</div>
+			</div>
+		</md-input-container>
+
+		<md-input-container flex>
+			<label>description</label>
+			<textarea name="description"
+								required
+								ng-model="ctrl.presentation.description"></textarea>
+
+			<div ng-messages="ctrl.form.description.$error">
+				<div ng-message="required">This is required</div>
+			</div>
+		</md-input-container>
+		<div class="md-actions" layout="row" layout-align="end center">
+			<md-button>Cancel</md-button>
+			<md-button class="md-primary">Save</md-button>
+		</div>
+	</form>
+</div>

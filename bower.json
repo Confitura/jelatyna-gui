@@ -12,19 +12,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.3.15",
-    "angular-resource": "^1.3.15",
-    "angular-route": "^1.3.15",
-    "angular-animate": "^1.3.15",
-    "angular-mocks": "^1.3.15",
-    "angular-material": " v0.9.0-rc1",
-    "ui-router": "~0.2.13",
-    "angular-messages": "~1.3.15",
-    "angular-validation-match": "~1.4.1",
-    "angular-cookies": "~1.3.15",
-    "angular-new-router": "~0.5.3"
+    "angular": "^1.4.0",
+    "ui-router": "^0.2.15",
+    "angular-validation-match": "~1.5.0"
   },
   "resolutions": {
-    "angular": "1.3.15"
+    "angular": "1.4.0"
   }
 }
