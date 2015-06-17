@@ -1,0 +1,51 @@
+<div layout="column"  flex>
+
+	<form name="ctrl.form" novalidate ng-controller="UserCreateController as ctrl">
+
+		<div layout="column" flex>
+			<md-input-container flex>
+				<label>e-mail</label>
+				<input name="email" type="email"
+							 required ng-model="ctrl.user.email"/>
+
+				<div ng-messages="ctrl.form.email.$error">
+					<div ng-message="required">wymagany</div>
+					<div ng-message="email">Format niepoprawny</div>
+				</div>
+			</md-input-container>
+			<md-input-container flex>
+				<label>Imię</label>
+				<input name="firstName" type="text"
+							 required ng-model="ctrl.user.firstName"/>
+
+				<div ng-messages="ctrl.form.firstName.$error">
+					<div ng-message="required">wymagane</div>
+				</div>
+			</md-input-container>
+			<md-input-container flex>
+				<label>Nazwisko</label>
+				<input name="lastName" type="text"
+							 required ng-model="ctrl.user.lastName"/>
+
+				<div ng-messages="ctrl.form.lastName.$error">
+					<div ng-message="required">Wymagane</div>
+				</div>
+			</md-input-container>
+			<md-input-container>
+				<md-select name="role" placeholder="Rola" ng-model="ctrl.user.role" required>
+					<md-option ng-repeat="role in ctrl.roles" value="{{role.code}}">{{role.name}}</md-option>
+				</md-select>
+				<div ng-messages="ctrl.form.role.$error">
+					<div ng-message="required">Wymagana</div>
+				</div>
+			</md-input-container>
+		</div>
+
+		<section layout layout-sm="column" layout-align="left">
+			<md-button class="md-raised" ng-disabled="ctrl.form.$invalid"
+								 ng-click="ctrl.create()">
+				Utwórz
+			</md-button>
+		</section>
+	</form>
+</div>

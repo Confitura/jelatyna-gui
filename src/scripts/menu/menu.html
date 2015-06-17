@@ -1,8 +1,8 @@
 <md-toolbar class="md-whiteframe-glow-z2" ng-controller="MenuController as ctrl">
 	<div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1" role="button">
-		<!--<div class="md-toolbar-tools">-->
 		<md-button
 				ng-repeat="item in ctrl.items"
+				ng-if="ctrl.isAvailable(item)"
 				ng-click="ctrl.click(item)">
 			{{item.label}}
 		</md-button>

@@ -11,11 +11,5 @@ function ProfileController(Security, UserService) {
 				});
 	};
 
-	vm.resetPassword = function () {
-		vm.password.token = $stateParams.token;
-		if (vm.passwordForm.$valid) {
-			PasswordService.save(vm.password);
-		}
-	};
 }
 module.exports = ProfileController;

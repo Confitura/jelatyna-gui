@@ -1,12 +1,14 @@
 'use strict';
+var _ = require('lodash');
 /* @ngInject */
 function MenuController(Security, $state, $window) {
 	var vm = this;
 	vm.items = [
-		//{label: 'My Profile', roles: ['ADMIN'], link: 'profile'},
+		{label: 'Nowy Użytkownik', roles: ['ADMIN'], link: 'create'},
+		{label: 'Mój profil', roles: ['ADMIN', 'VOLUNTEER'], link: 'profile'},
 		{
-			label: 'Scan',
-			roles: ['ADMIN'],
+			label: 'Skan',
+			roles: ['ADMIN', 'VOLUNTEER'],
 			link: 'zxing://scan/?ret=http://192.168.0.14:8081/%23/participation/{CODE}&SCAN_FORMATS=QR_CODE',
 			redirect: true
 		}
@@ -23,6 +25,15 @@ function MenuController(Security, $state, $window) {
 				.catch(function () {
 				});
 	};
+	vm.isAvailable = function (item) {
+		var user = Security.getUser();
+		if (user) {
+			return _.intersection(item.roles, user.authorities).length > 0;
+		} else {
+			return false;
+		}
+	};
+
 	vm.click = function (item) {
 		if (item.redirect) {
 			$window.location.href = item.link;

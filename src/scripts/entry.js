@@ -23,14 +23,14 @@ angular.module('jelatyna', [
 		.config(function ($stateProvider, $urlRouterProvider) {
 			$urlRouterProvider.when('', '/login');
 			$stateProvider
-				//.state('create', {
-				//    url: '/admin/create',
-				//    template: require('admin/views/create.html')
-				//})
-				//.state('password', {
-				//    url: '/password/:token',
-				//    template: require('user/views/reset-password.html')
-				//})
+					.state('create', {
+						url: '/admin/create',
+						template: require('user/create/create.html')
+					})
+					.state('password', {
+						url: '/password/:token',
+						template: require('user/reset_password/reset_password.html')
+					})
 					.state('login', {
 						url: '/login',
 						template: require('security/login/login.html')
