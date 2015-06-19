@@ -1,7 +1,7 @@
 <md-toolbar class="md-whiteframe-glow-z2" ng-controller="MenuController as ctrl">
 	<div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1" role="button" layout-margin>
 		<md-button class="md-icon-button">
-			<md-icon hide-gt-sm ng-click="ctrl.openSideMenu()">menu</md-icon>
+			<md-icon hide-gt-md ng-click="ctrl.openSideMenu()">menu</md-icon>
 		</md-button>
 		<span flex></span>
 
@@ -9,7 +9,7 @@
 							 ng-repeat="item in ctrl.topItems"
 							 ng-if="ctrl.isAvailable(item)"
 							 ng-click="ctrl.click(item)">
-			<md-icon hide-gt-sm>{{item.label}}</md-icon>
+			<md-icon hide-gt-md>{{item.label}}</md-icon>
 		</md-button>
 
 	</div>
