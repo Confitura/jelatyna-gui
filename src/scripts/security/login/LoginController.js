@@ -19,7 +19,7 @@ function LoginController(Security, $state, PasswordService, $mdToast) {
 				})
 				.catch(function () {
 					$mdToast.showSimple('Ups! something went wrong!');
-				})
+				});
 	};
 
 	if (Security.getUser()) {

@@ -19,7 +19,8 @@ angular.module('jelatyna', [
 	'ui.router', 'validation.match',
 	require('user'), require('security'), require('menu'), require('presentation'),
 	require('participation')])
-		.constant('apiServer', 'http://192.168.0.14:8080/api')
+		.constant('apiServer', 'http://api.confitura.pl/api')
+		.constant('guiServer', 'http://next.confitura.pl/')
 		.config(function ($stateProvider, $urlRouterProvider) {
 			$urlRouterProvider.when('', '/login');
 			$stateProvider
@@ -47,10 +48,14 @@ angular.module('jelatyna', [
 						url: '/presentation',
 						template: require('presentation/presentation.html')
 					})
+					.state('participation-search', {
+						url: '/participation',
+						template: require('participation/search.html')
+					})
 					.state('participation', {
 						url: '/participation/:token',
 						template: require('participation/participation.html')
-					})
+					});
 		})
 		.config(function ($httpProvider) {
 			$httpProvider.defaults.useXDomain = true;

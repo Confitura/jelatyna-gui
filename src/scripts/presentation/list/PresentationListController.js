@@ -1,4 +1,5 @@
 'use strict';
+var ng = require('angular');
 var _ = require('lodash');
 /* @ngInject */
 function PresentationListController($mdDialog) {
@@ -78,22 +79,22 @@ function PresentationListController($mdDialog) {
 		}
 	];
 
-	vm.delete = function (presentation, $event) {
-		var confirm = $mdDialog.confirm()
-				.parent(angular.element(document.body))
-				.title('Would you like to delete this presentation?')
-				.ok('Yes')
-				.cancel('No')
-				.targetEvent($event);
-		$mdDialog.show(confirm)
-				.then(function () {
-					_.remove(vm.presentations, {id: presentation.id});
-					console.log('success!');
-				})
-				.catch(function () {
-					console.log('rejected!');
-				});
-	}
+	//vm.delete = function (presentation, $event) {
+	//	var confirm = $mdDialog.confirm()
+	//			.parent(ng.element(document.body))
+	//			.title('Would you like to delete this presentation?')
+	//			.ok('Yes')
+	//			.cancel('No')
+	//			.targetEvent($event);
+	//	$mdDialog.show(confirm)
+	//			.then(function () {
+	//				_.remove(vm.presentations, {id: presentation.id});
+	//				console.log('success!');
+	//			})
+	//			.catch(function () {
+	//				console.log('rejected!');
+	//			});
+	//};
 
 }
 module.exports = PresentationListController;

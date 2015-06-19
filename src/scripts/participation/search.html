@@ -1,0 +1,24 @@
+<div ng-controller="ParticipationController as ctrl">
+	<md-content>
+		<md-autocomplete
+				placeholder="first name/last name/email"
+				md-min-length="3"
+				md-autofocus="true"
+				md-delay="500"
+				md-search-text="searchText"
+				md-search-text-change="ctrl.searchTextChange(searchText)"
+				md-items="person in ctrl.search(searchText)"
+				md-menu-class="person-search"
+				md-selected-item-change="ctrl.selected(person)"
+				>
+			<md-item-template>
+				<span class="name">{{person.firstName}} {{person.lastName}}</span>
+				<span class="email">{{person.email}}</span>
+			</md-item-template>
+			<md-not-found>
+				No matches found.
+			</md-not-found>
+		</md-autocomplete>
+	</md-content>
+
+</div>

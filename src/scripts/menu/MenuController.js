@@ -1,9 +1,14 @@
 'use strict';
 var _ = require('lodash');
 /* @ngInject */
-function MenuController(Security, $state, $window, $mdSidenav) {
+function MenuController(Security, $state, $window, $mdSidenav, guiServer) {
 	var vm = this;
 	vm.items = [
+		{
+			label: 'Szukaj',
+			roles: ['ADMIN', 'VOLUNTEER'],
+			link: 'participation-search'
+		},
 		{label: 'Mój profil', roles: ['ADMIN', 'VOLUNTEER'], link: 'profile'},
 		{label: 'Nowy Użytkownik', roles: ['ADMIN'], link: 'create'},
 		{label: 'Logout', roles: ['ADMIN', 'VOLUNTEER'], link: 'logout'}
@@ -12,12 +17,12 @@ function MenuController(Security, $state, $window, $mdSidenav) {
 		{
 			label: 'search',
 			roles: ['ADMIN', 'VOLUNTEER'],
-			link: 'search'
+			link: 'participation-search'
 		},
 		{
 			label: 'scanner',
 			roles: ['ADMIN', 'VOLUNTEER'],
-			link: 'zxing://scan/?ret=http://192.168.0.14:9090/%23/participation/{CODE}&SCAN_FORMATS=QR_CODE',
+			link: 'zxing://scan/?ret=' + guiServer + '%23/participation/{CODE}&SCAN_FORMATS=QR_CODE',
 			redirect: true
 		}
 
@@ -49,6 +54,7 @@ function MenuController(Security, $state, $window, $mdSidenav) {
 		} else {
 			$state.go(item.link);
 		}
+		$mdSidenav('side-menu').close();
 	};
 
 	vm.openSideMenu = function () {

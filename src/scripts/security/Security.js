@@ -32,7 +32,7 @@ function Security($http, apiServer, $cookies, $window) {
 					$cookies.remove('authenticated');
 					$cookies.remove('principal');
 				});
-	}
+	};
 
 }
 module.exports = Security;
