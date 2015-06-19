@@ -29,7 +29,7 @@ angular.module('jelatyna', [
 					})
 					.state('password', {
 						url: '/password/:token',
-						template: require('user/reset_password/reset_password.html')
+						template: require('password/reset_password.html')
 					})
 					.state('login', {
 						url: '/login',
@@ -56,7 +56,7 @@ angular.module('jelatyna', [
 			$httpProvider.defaults.useXDomain = true;
 			$httpProvider.defaults.withCredentials = true;
 			$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-			$httpProvider.interceptors.push(function ($q, $injector) {
+			$httpProvider.interceptors.push(/* @ngInject */function ($q, $injector) {
 				return {
 					'responseError': function (rejection) {
 						console.log(rejection);

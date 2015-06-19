@@ -1,31 +1,43 @@
 <div ng-controller="LoginController as ctrl" layout="column">
 
-    </md-toolbar>
-    <md-content layout-padding>
-        <md-card>
-            <md-toolbar class="md-toolbar-tools">
-                Login
-            </md-toolbar>
-            <md-card-content>
-                <form name="ctrl.passwordForm" novalidate>
-                    <md-input-container>
-                        <label>email</label>
-                        <input name="login" ng-model="ctrl.credentials.email" type="text">
+	</md-toolbar>
+	<md-content layout-padding>
+		<md-card>
+			<md-toolbar class="md-toolbar-tools">
+				Login
+			</md-toolbar>
+			<md-card-content>
+				<form name="ctrl.form" novalidate>
+					<md-input-container>
+						<label>email</label>
+						<input name="email" ng-model="ctrl.credentials.email" type="email" required>
 
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Password</label>
-                        <input  name="password" ng-model="ctrl.credentials.password" type="password">
-                    </md-input-container>
+					</md-input-container>
+					<md-input-container>
+						<label>Password</label>
+						<input name="password" ng-model="ctrl.credentials.password" type="password" required>
+					</md-input-container>
 
-                    <section layout="row" layout-sm="column" layout-align="left">
-                        <md-button class="md-raised" ng-disabled="ctrl.passwordForm.$invalid"
-                                ng-click="ctrl.login()">
-                            Login
-                        </md-button>
-                    </section>
-                </form>
-            </md-card-content>
-        </md-card>
-    </md-content>
+					<section layout="row" layout-sm="column" layout-align="left">
+						<md-button class="md-raised" ng-disabled="ctrl.form.$invalid"
+											 ng-click="ctrl.login()">
+							Login
+						</md-button>
+						<div>
+							<md-button class="md-raised" ng-disabled="ctrl.form.email.$invalid"
+												 ng-click="ctrl.requestPasswordReset()">
+								Reset password
+							</md-button>
+								<md-icon ng-if="ctrl.form.email.$invalid">
+									info
+									<md-tooltip>
+										Provide your email to request password reset.
+									</md-tooltip>
+								</md-icon>
+						</div>
+					</section>
+				</form>
+			</md-card-content>
+		</md-card>
+	</md-content>
 </div>
