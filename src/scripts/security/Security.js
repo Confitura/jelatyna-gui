@@ -14,7 +14,7 @@ function Security($http, apiServer, $cookies, $window) {
 		$http.defaults.useXDomain = true;
 		$http.defaults.withCredentials = true;
 
-		return $http.get(apiServer + '/user', {headers: headers})
+		return $http.get(apiServer + '/user/login', {headers: headers})
 				.then(function (responce) {
 					vm.replaceUser(responce.data);
 					$cookies.putObject('authenticated', true);
