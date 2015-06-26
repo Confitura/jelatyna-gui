@@ -1,26 +1,35 @@
 <div ng-controller="ParticipationController as ctrl">
-	<md-content>
-		<md-input-container>
-			<label>Imię</label>
-			<input type="text" disabled ng-model="ctrl.participant.firstName"/>
-		</md-input-container>
-		<md-input-container>
-			<label>Nazwisko</label>
-			<input type="text" disabled ng-model="ctrl.participant.lastName"/>
-		</md-input-container>
-		<md-input-container>
-			<label>Rozmiar koszulki</label>
-			<input type="text" disabled ng-model="ctrl.participant.registration.size" value="L"/>
-		</md-input-container>
-	</md-content>
-	<md-button class="md-fab md-fab-bottom-right"
-						 ng-hide="ctrl.participant.arrived"
-						 ng-click="ctrl.change('confirm')">
-		<md-icon>done</md-icon>
-	</md-button>
-	<md-button class="md-fab md-fab-bottom-right"
-						 ng-show="ctrl.participant.arrived"
-						 ng-click="ctrl.change('reject')">
-		<md-icon>undo</md-icon>
-	</md-button>
+    <md-toolbar class="md-tall">
+        <div flex></div>
+        <div class="md-toolbar-tools">
+            <h1>{{ctrl.participant.firstName}} {{ctrl.participant.lastName}}</h1>
+            <span flex></span>
+
+            <md-button class="md-icon-button"
+                       ng-if="ctrl.participant.arrived"
+                       ng-click="ctrl.stamped()">
+                <md-icon>{{ctrl.participant.stamped ? 'star' : 'star_border'}}</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding>
+        <md-input-container>
+            <label>Rozmiar koszulki</label>
+            <input type="text" disabled ng-model="ctrl.participant.registration.size" value="L"/>
+        </md-input-container>
+        <md-input-container>
+            <label>e-mail</label>
+            <input type="text" disabled ng-model="ctrl.participant.email" value="L"/>
+        </md-input-container>
+    </md-content>
+    <md-button class="md-fab md-fab-bottom-right"
+               ng-hide="ctrl.participant.arrived"
+               ng-click="ctrl.change('confirm')">
+        <md-icon>done</md-icon>
+    </md-button>
+    <md-button class="md-fab md-fab-bottom-right"
+               ng-show="ctrl.participant.arrived"
+               ng-click="ctrl.change('reject')">
+        <md-icon>not_interested</md-icon>
+    </md-button>
 </div>

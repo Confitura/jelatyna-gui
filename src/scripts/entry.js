@@ -14,13 +14,23 @@ require('angular-validation-match/dist/angular-input-match.min');
 require('angular-material/angular-material.min');
 require('angular-material/angular-material.css');
 
-angular.module('jelatyna', [
-	'ngAnimate', 'ngAria', 'ngMaterial', 'ngMessages',
-	'ui.router', 'validation.match',
-	require('user'), require('security'), require('menu'), require('presentation'),
-	require('participation')])
-		.constant('apiServer', 'http://api.confitura.pl/api')
+angular
+		.module('jelatyna', [
+			'ngAnimate', 'ngAria', 'ngMaterial', 'ngMessages',
+			'ui.router', 'validation.match',
+			require('user'),
+			require('security'),
+			require('menu'),
+			require('presentation'),
+			require('participation'),
+			require('email')
+
+		])
+		.constant('apiServer', 'http://localhost:8080/api')
 		.constant('guiServer', 'http://next.confitura.pl/')
+		.run(function (Security) {
+			Security.checkSession();
+		})
 		.config(function ($stateProvider, $urlRouterProvider) {
 			$urlRouterProvider.when('', '/login');
 			$stateProvider
@@ -55,7 +65,12 @@ angular.module('jelatyna', [
 					.state('participation', {
 						url: '/participation/:token',
 						template: require('participation/participation.html')
-					});
+					})
+					.state('email', {
+						url: '/email',
+						template: require('email/email.html')
+					})
+			;
 		})
 		.config(function ($httpProvider) {
 			$httpProvider.defaults.useXDomain = true;
@@ -64,15 +79,17 @@ angular.module('jelatyna', [
 			$httpProvider.interceptors.push(/* @ngInject */function ($q, $injector) {
 				return {
 					'responseError': function (rejection) {
-						console.log(rejection);
 						if (rejection.status === 401) {
-							var $cookies = $injector.get('$cookies');
-
-							_.forEach($cookies.getAll(), function (value, key) {
-								$cookies.remove(key);
-							});
+							//var $cookies = $injector.get('$cookies');
+							//
+							//_.forEach($cookies.getAll(), function (value, key) {
+							//	$cookies.remove(key);
+							//});
+							$injector.get('Security').logout();
 							$injector.get('$state').go('login');
+							return $q.reject(rejection);
 						}
+						$injector.get('$mdToast').showSimple('Ups! Something went very wrong :(');
 						return $q.reject(rejection);
 					}
 				};

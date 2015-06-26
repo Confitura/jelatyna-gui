@@ -1,11 +1,12 @@
 'use strict';
 var ng = require('angular');
 /* @ngInject */
-function Security($http, apiServer, $cookies, $window) {
+function Security($http, apiServer, $cookies, $window, $state) {
 	var vm = this;
 	vm.replaceUser = function (user) {
 		$cookies.putObject('principal', user);
 	};
+
 
 	vm.login = function (credentials) {
 		var headers = credentials ? {
@@ -14,7 +15,7 @@ function Security($http, apiServer, $cookies, $window) {
 		$http.defaults.useXDomain = true;
 		$http.defaults.withCredentials = true;
 
-		return $http.get(apiServer + '/user/login', {headers: headers})
+		return doLogin(headers)
 				.then(function (responce) {
 					vm.replaceUser(responce.data);
 					$cookies.putObject('authenticated', true);
@@ -31,8 +32,20 @@ function Security($http, apiServer, $cookies, $window) {
 				.then(function () {
 					$cookies.remove('authenticated');
 					$cookies.remove('principal');
+				})
+				.finally(function () {
+					$state.go('login');
 				});
 	};
+
+	vm.checkSession = function () {
+		doLogin({});
+	};
+
+	function doLogin(headers) {
+		return $http.get(apiServer + '/user/login', {headers: headers});
+	}
+
 
 }
 module.exports = Security;

@@ -9,6 +9,7 @@ function MenuController(Security, $state, $window, $mdSidenav, guiServer) {
 			roles: ['ADMIN', 'VOLUNTEER'],
 			link: 'participation-search'
 		},
+		{label: 'Wyślij e-mail', roles: ['ADMIN'], link: 'email'},
 		{label: 'Mój profil', roles: ['ADMIN', 'VOLUNTEER'], link: 'profile'},
 		{label: 'Nowy Użytkownik', roles: ['ADMIN'], link: 'create'},
 		{label: 'Logout', roles: ['ADMIN', 'VOLUNTEER'], link: 'logout'}
@@ -25,7 +26,6 @@ function MenuController(Security, $state, $window, $mdSidenav, guiServer) {
 			link: 'zxing://scan/?ret=' + guiServer + '%23/participation/{CODE}&SCAN_FORMATS=QR_CODE',
 			redirect: true
 		}
-
 	];
 
 	vm.isAvailable = function (item) {
@@ -36,15 +36,6 @@ function MenuController(Security, $state, $window, $mdSidenav, guiServer) {
 			return false;
 		}
 	};
-
-	function logout() {
-		Security.logout()
-				.then(function () {
-					$state.go('login');
-				})
-				.catch(function () {
-				});
-	}
 
 	vm.click = function (item) {
 		if (item.redirect) {
@@ -60,6 +51,10 @@ function MenuController(Security, $state, $window, $mdSidenav, guiServer) {
 	vm.openSideMenu = function () {
 		$mdSidenav('side-menu').open();
 	};
+
+	function logout() {
+		Security.logout();
+	}
 
 }
 module.exports = MenuController;

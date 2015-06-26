@@ -7,7 +7,7 @@ function LoginController(Security, $state, PasswordService, $mdToast) {
 	vm.login = function () {
 		Security.login(vm.credentials)
 				.then(function () {
-					$state.go('profile');
+					$state.go('participation-search');
 				});
 
 	};

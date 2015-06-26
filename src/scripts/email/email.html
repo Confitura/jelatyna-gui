@@ -1,0 +1,24 @@
+<div layout="column" ng-controller="EmailController as ctrl">
+	<form name="ctrl.form" novalidate>
+		<md-radio-group ng-model="ctrl.email.audience" ng-disabled="true">
+			<!--<md-radio-button value="all" class="md-primary">Wszyscy</md-radio-button>-->
+			<md-radio-button value="registered"  ng-disabled>Zarejestrowani</md-radio-button>
+		</md-radio-group>
+		<md-checkbox ng-model="ctrl.email.includeBarcode">
+			załącz token jako bar code
+		</md-checkbox>
+		<md-select placeholder="Template" ng-model="ctrl.template" required>
+			<md-option ng-repeat="template in ctrl.templates" ng-value="template">{{template.code}}</md-option>
+		</md-select>
+		<md-card ng-if="ctrl.template">
+
+			<md-card-content>
+				<h3>{{ctrl.template.subject}}</h3>
+				<span ng-bind-html="ctrl.template.text"></span>
+			</md-card-content>
+		</md-card>
+		<md-button class="md-fab md-fab-bottom-right" ng-click="ctrl.send()" ng-if="ctrl.form.$valid">
+			<md-icon>send</md-icon>
+		</md-button>
+	</form>
+</div>
