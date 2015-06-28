@@ -20,6 +20,7 @@ function ParticipationController(Participation, $stateParams, $mdToast, Person, 
         Participation.save({token: $stateParams.token, type: status}).$promise
             .then(function () {
                 vm.participant.arrived = !vm.participant.arrived;
+                $mdToast.showSimple('Saved!');
             })
             .catch(function () {
                 toast('Błąd podczas rejestracji!');
@@ -30,6 +31,7 @@ function ParticipationController(Participation, $stateParams, $mdToast, Person, 
         Participation.save({token: $stateParams.token, type: type}).$promise
             .then(function () {
                 vm.participant.stamped = !vm.participant.stamped;
+                $mdToast.showSimple('Saved!');
             })
             .catch(function () {
                 toast('Błąd podczas rejestracji!');

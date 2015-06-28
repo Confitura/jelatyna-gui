@@ -4,6 +4,7 @@ var _ = require('lodash');
 function MenuController(Security, $state, $window, $mdSidenav, guiServer) {
 	var vm = this;
 	vm.items = [
+		{label: 'Losowanie', roles: ['ADMIN'], link: 'draw'},
 		{
 			label: 'Szukaj',
 			roles: ['ADMIN', 'VOLUNTEER'],

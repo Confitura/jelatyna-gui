@@ -65,7 +65,6 @@ module.exports = {
 		hot: true,
 		inline: true,
 		stats: {colors: true},
-		port: 9090,
-		host: '192.168.0.14'
+		port: 9090
 	}
 };

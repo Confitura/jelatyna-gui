@@ -1,0 +1,63 @@
+md-dialog#draw-modal {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  //background: #000;
+  background: #1b0218 url(http://2015.confitura.pl/js/ab7e94ded3da9023487e31089b245b1f.png) no-repeat;
+  background-size: 100%;
+
+  md-dialog-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .winner {
+      width: 100%;
+      text-align: center;
+      font-size: 70px;
+      font-weight: 200;
+      overflow: hidden;
+      text-transform: uppercase;
+      padding: 0;
+      margin: 0;
+      letter-spacing: 14px;
+
+      opacity: .8;
+      text-shadow: 0 0 10px #fff;
+      perspective: 1000px;
+      display: inline-block;
+
+      &.ng-enter {
+        animation: OpeningSequence 2s linear;
+        display: inline-block;
+        transform-origin: 50% 50%;
+        color: hsla(0, 0%, 0%, 0);
+        transform-style: preserve-3d;
+      }
+
+    }
+  }
+
+}
+
+@keyframes OpeningSequence {
+  0% {
+    text-shadow: 0 0 50px #fff;
+    letter-spacing: 50px;
+    opacity: 0.2;
+    transform: rotateY(-90deg);
+  }
+  50% {
+    text-shadow: 0 0 5px #fff;
+    letter-spacing: 14px;
+    opacity: 0.8;
+    transform: rotateY(0deg);
+  }
+  100% {
+    text-shadow: 0 0 1px #fff;
+    opacity: 0.8;
+    transform: rotateY(0deg);
+  }
+}
