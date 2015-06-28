@@ -27,7 +27,7 @@ angular
         require('draw')
 
     ])
-    .constant('apiServer', 'http://api.confitura.pl/')
+    .constant('apiServer', 'http://api.confitura.pl/api/')
     //.constant('apiServer', 'http://localhost:8080/api')
     .constant('guiServer', 'http://next.confitura.pl/')
     .run(/* @ngInject */function (Security) {

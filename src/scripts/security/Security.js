@@ -29,11 +29,9 @@ function Security($http, apiServer, $cookies, $window, $state) {
 
     vm.logout = function () {
         return $http.get(apiServer + '/logout')
-            .then(function () {
+            .finally(function () {
                 $cookies.remove('authenticated');
                 $cookies.remove('principal');
-            })
-            .finally(function () {
                 $state.go('login');
             });
     };
