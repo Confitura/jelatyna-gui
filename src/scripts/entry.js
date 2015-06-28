@@ -30,7 +30,7 @@ angular
     .constant('apiServer', 'http://api.confitura.pl/')
     //.constant('apiServer', 'http://localhost:8080/api')
     .constant('guiServer', 'http://next.confitura.pl/')
-    .run(function (Security) {
+    .run(/* @ngInject */function (Security) {
         Security.checkSession();
     })
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -85,13 +85,7 @@ angular
             return {
                 'responseError': function (rejection) {
                     if (rejection.status === 401) {
-                        //var $cookies = $injector.get('$cookies');
-                        //
-                        //_.forEach($cookies.getAll(), function (value, key) {
-                        //	$cookies.remove(key);
-                        //});
                         $injector.get('Security').logout();
-                        $injector.get('$state').go('login');
                         return $q.reject(rejection);
                     }
                     $injector.get('$mdToast').showSimple('Ups! Something went very wrong :(');

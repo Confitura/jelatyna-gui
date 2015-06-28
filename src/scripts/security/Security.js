@@ -2,49 +2,51 @@
 var ng = require('angular');
 /* @ngInject */
 function Security($http, apiServer, $cookies, $window, $state) {
-	var vm = this;
-	vm.replaceUser = function (user) {
-		$cookies.putObject('principal', user);
-	};
+    var vm = this;
+    vm.replaceUser = function (user) {
+        $cookies.putObject('principal', user);
+    };
 
 
-	vm.login = function (credentials) {
-		var headers = credentials ? {
-			'authorization': 'Basic ' + $window.btoa(credentials.email + ':' + credentials.password)
-		} : {};
-		$http.defaults.useXDomain = true;
-		$http.defaults.withCredentials = true;
+    vm.login = function (credentials) {
+        var headers = credentials ? {
+            'authorization': 'Basic ' + $window.btoa(credentials.email + ':' + credentials.password)
+        } : {};
+        $http.defaults.useXDomain = true;
+        $http.defaults.withCredentials = true;
 
-		return doLogin(headers)
-				.then(function (responce) {
-					vm.replaceUser(responce.data);
-					$cookies.putObject('authenticated', true);
-					return responce;
-				});
-	};
+        return doLogin(headers)
+            .then(function (responce) {
+                vm.replaceUser(responce.data);
+                $cookies.putObject('authenticated', true);
+                return responce;
+            });
+    };
 
-	vm.getUser = function () {
-		return $cookies.getObject('principal');
-	};
+    vm.getUser = function () {
+        return $cookies.getObject('principal');
+    };
 
-	vm.logout = function () {
-		return $http.get(apiServer + '/logout')
-				.then(function () {
-					$cookies.remove('authenticated');
-					$cookies.remove('principal');
-				})
-				.finally(function () {
-					$state.go('login');
-				});
-	};
+    vm.logout = function () {
+        return $http.get(apiServer + '/logout')
+            .then(function () {
+                $cookies.remove('authenticated');
+                $cookies.remove('principal');
+            })
+            .finally(function () {
+                $state.go('login');
+            });
+    };
 
-	vm.checkSession = function () {
-		doLogin({});
-	};
+    vm.checkSession = function () {
+        if (vm.getUser()) {
+            doLogin({});
+        }
+    };
 
-	function doLogin(headers) {
-		return $http.get(apiServer + '/user/login', {headers: headers});
-	}
+    function doLogin(headers) {
+        return $http.get(apiServer + '/user/login', {headers: headers});
+    }
 
 
 }
