@@ -12,7 +12,7 @@ function MenuController(Security, $state, $window, $mdSidenav, guiServer) {
 		},
 		{label: 'Wyślij e-mail', roles: ['ADMIN'], link: 'email'},
 		{label: 'Mój profil', roles: ['ADMIN', 'VOLUNTEER'], link: 'profile'},
-		{label: 'Nowy Użytkownik', roles: ['ADMIN'], link: 'create'},
+		{label: 'Użytkownicy', roles: ['ADMIN'], link: 'user-list'},
 		{label: 'Logout', roles: ['ADMIN', 'VOLUNTEER'], link: 'logout'}
 	];
 	vm.topItems = [

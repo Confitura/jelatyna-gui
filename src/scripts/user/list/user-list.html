@@ -1,0 +1,24 @@
+<div layout-padding layout="row" layout-sm="column" ng-controller="UserListController as ctrl">
+    <table>
+        <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Naziwsko</th>
+            <th>e-mail</th>
+            <th>rola</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in ctrl.users">
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.authorities}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <md-button class="md-fab md-fab-bottom-right"
+               ng-click="ctrl.add()">
+        <md-icon>add</md-icon>
+    </md-button>
+</div>

@@ -27,8 +27,8 @@ angular
         require('draw')
 
     ])
-    .constant('apiServer', 'http://api.confitura.pl/api')
-    //.constant('apiServer', 'http://localhost:8080/api')
+    //.constant('apiServer', 'http://api.confitura.pl/api')
+    .constant('apiServer', 'http://localhost:8080/api')
     .constant('guiServer', 'http://next.confitura.pl/')
     .run(/* @ngInject */function (Security) {
         Security.checkSession();
@@ -39,6 +39,10 @@ angular
             .state('create', {
                 url: '/admin/create',
                 template: require('user/create/create.html')
+            })
+            .state('user-list', {
+                url: '/user/list',
+                template: require('user/list/user-list.html')
             })
             .state('password', {
                 url: '/password/:token',
