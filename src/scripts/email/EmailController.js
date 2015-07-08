@@ -3,7 +3,7 @@
 function EmailController($http, apiServer, Email, $mdToast) {
     var vm = this;
     vm.template = null;
-    vm.email = {audience: 'registered'};
+    vm.email = {audience: 'REGISTERED'};
     vm.templates = [];
     vm.send = function () {
         vm.email.template = vm.template.code;
